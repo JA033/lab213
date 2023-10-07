@@ -1,0 +1,11 @@
+/home/dxy/Documents/csa_wildcard/build/CMakeFiles/wildcard.dir
+/home/dxy/Documents/csa_wildcard/build/CMakeFiles/csa_wildcard.dir
+/home/dxy/Documents/csa_wildcard/build/CMakeFiles/edit_cache.dir
+/home/dxy/Documents/csa_wildcard/build/CMakeFiles/rebuild_cache.dir
+/home/dxy/Documents/csa_wildcard/build/deps/GeCSA-Wrapper/CMakeFiles/gecsa.dir
+/home/dxy/Documents/csa_wildcard/build/deps/GeCSA-Wrapper/CMakeFiles/edit_cache.dir
+/home/dxy/Documents/csa_wildcard/build/deps/GeCSA-Wrapper/CMakeFiles/rebuild_cache.dir
+/home/dxy/Documents/csa_wildcard/build/deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/divsufsort64.dir
+/home/dxy/Documents/csa_wildcard/build/deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/GeCSA64.dir
+/home/dxy/Documents/csa_wildcard/build/deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/edit_cache.dir
+/home/dxy/Documents/csa_wildcard/build/deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/rebuild_cache.dir

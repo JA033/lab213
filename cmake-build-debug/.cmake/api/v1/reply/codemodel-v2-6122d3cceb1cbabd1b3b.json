@@ -1,0 +1,162 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						1,
+						4
+					]
+				},
+				{
+					"build" : "deps/GeCSA-Wrapper",
+					"childIndexes" : 
+					[
+						2
+					],
+					"jsonFile" : "directory-deps.GeCSA-Wrapper-Debug-a03234957e6e7c45bea9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "deps/GeCSA-Wrapper",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "deps/GeCSA-Wrapper/source/GeCSA64",
+					"jsonFile" : "directory-deps.GeCSA-Wrapper.source.GeCSA64-Debug-9fa219be4061a24a7212.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "deps/GeCSA-Wrapper/source/GeCSA64",
+					"targetIndexes" : 
+					[
+						0,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "CSA-Wildcard",
+					"targetIndexes" : 
+					[
+						1,
+						4
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "gecsa",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "GeCSA",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						0,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 2,
+					"id" : "GeCSA64::@3501b5be910063311d19",
+					"jsonFile" : "target-GeCSA64-Debug-031060c01325c3026aec.json",
+					"name" : "GeCSA64",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "csa_wildcard::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-csa_wildcard-Debug-56bd490e72167e0cb029.json",
+					"name" : "csa_wildcard",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "divsufsort64::@3501b5be910063311d19",
+					"jsonFile" : "target-divsufsort64-Debug-ca516660d26394a42d33.json",
+					"name" : "divsufsort64",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "gecsa::@f1c2841763246206785a",
+					"jsonFile" : "target-gecsa-Debug-f37be44046235abd9f2a.json",
+					"name" : "gecsa",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "wildcard::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-wildcard-Debug-ee058f54bcff60fc3d1c.json",
+					"name" : "wildcard",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/dxy/Documents/csa_wildcard/cmake-build-debug",
+		"source" : "/home/dxy/Documents/csa_wildcard"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}

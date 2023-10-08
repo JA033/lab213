@@ -1,2 +1,0 @@
-/usr/bin/ar qc libwildcard.a CMakeFiles/wildcard.dir/source/document_searcher.cpp.o CMakeFiles/wildcard.dir/source/utils.cpp.o CMakeFiles/wildcard.dir/source/wildcard_executor.cpp.o CMakeFiles/wildcard.dir/source/wildcard_pattern.cpp.o CMakeFiles/wildcard.dir/source/searchable_bitmap.cpp.o
-/usr/bin/ranlib libwildcard.a

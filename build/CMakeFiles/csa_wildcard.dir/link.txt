@@ -1,1 +1,0 @@
-/usr/bin/g++ -g CMakeFiles/csa_wildcard.dir/source/main.cpp.o -o csa_wildcard  libwildcard.a deps/GeCSA-Wrapper/libgecsa.a deps/GeCSA-Wrapper/source/GeCSA64/libGeCSA64.a deps/GeCSA-Wrapper/source/GeCSA64/libdivsufsort64.a /usr/lib/x86_64-linux-gnu/libtbb.so.12.5 

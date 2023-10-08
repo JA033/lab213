@@ -1,0 +1,27 @@
+# ninja log v5
+9035	9402	1696747343942548253	deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/GeCSA64.dir/InArray.cpp.o	3a1c52a4b71ad6a1
+8414	9035	1696747343574945308	deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/GeCSA64.dir/Gen_Phi.cpp.o	c64e6666afca3441
+9958	9962	1696747344497962095	deps/GeCSA-Wrapper/libgecsa.a	e8bba2e6f7f1d36e
+7146	7304	1696747341840856651	deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/divsufsort64.dir/divsufsort/divsufsort.c.o	4354a34ccd8b069b
+9953	9958	1696747344493966302	deps/GeCSA-Wrapper/source/GeCSA64/libGeCSA64.a	f41b52b2b4dd882f
+1345	2100	1696747336639154399	CMakeFiles/wildcard.dir/source/wildcard_executor.cpp.o	88be9c55a866326e
+7832	7837	1696747342372262592	deps/GeCSA-Wrapper/source/GeCSA64/libdivsufsort64.a	627097a8a4600297
+7837	8414	1696747342947624608	deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/GeCSA64.dir/CSA.cpp.o	92356c0aae0b2cfa
+2100	2559	1696747337098559678	CMakeFiles/wildcard.dir/source/wildcard_pattern.cpp.o	c9dd310b41f48c6
+5470	5786	1696747340322606024	deps/GeCSA-Wrapper/CMakeFiles/gecsa.dir/source/bitmap.cpp.o	d2f2d1cf540cd949
+5786	6349	1696747340885947421	deps/GeCSA-Wrapper/CMakeFiles/gecsa.dir/source/gecsa.cpp.o	b0556acc9e4d15a1
+9569	9788	1696747344326142902	deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/GeCSA64.dir/Phi.cpp.o	eb84c72e407079c3
+9402	9569	1696747344106374162	deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/GeCSA64.dir/loadkit.cpp.o	a22001c6a89f343c
+7304	7553	1696747342088577154	deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/divsufsort64.dir/divsufsort/sssort.c.o	1f9121fc42f62a53
+9788	9953	1696747344489970506	deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/GeCSA64.dir/savekit.cpp.o	19d0c556bfa93856
+2559	3374	1696747337909532184	CMakeFiles/wildcard.dir/source/searchable_bitmap.cpp.o	7c8fae161d18e544
+4795	5470	1696747340006975029	CMakeFiles/csa_wildcard.dir/source/main.cpp.o	263109c23ec9150a
+757	1345	1696747335880147021	CMakeFiles/wildcard.dir/source/utils.cpp.o	412de06e70f22d4b
+7553	7758	1696747342292351201	deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/divsufsort64.dir/divsufsort/trsort.c.o	9e34dfeb49f579ef
+0	757	1696747335292932506	CMakeFiles/wildcard.dir/source/document_searcher.cpp.o	aed2cde4181e3642
+9967	10007	1696747344541915843	csa_wildcard	799653861e1547f8
+9962	9967	1696747344505953686	libwildcard.a	d56cf3424b958513
+6349	6742	1696747341281493481	deps/GeCSA-Wrapper/CMakeFiles/gecsa.dir/source/int_array.cpp.o	d1e401aaacce51ae
+7758	7832	1696747342368267024	deps/GeCSA-Wrapper/source/GeCSA64/CMakeFiles/divsufsort64.dir/divsufsort/utils.c.o	eae3c3a1c80bf70
+6742	7146	1696747341681038601	deps/GeCSA-Wrapper/CMakeFiles/gecsa.dir/source/sparse_bitmap.cpp.o	8334eb077ff5f4f3
+3374	4795	1696747339331785632	CMakeFiles/wildcard.dir/source/wildcard_searcher.cpp.o	373aff1b99062687

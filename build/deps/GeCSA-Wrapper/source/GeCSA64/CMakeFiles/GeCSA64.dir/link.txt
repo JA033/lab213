@@ -1,2 +1,0 @@
-/usr/bin/ar qc libGeCSA64.a CMakeFiles/GeCSA64.dir/CSA.cpp.o CMakeFiles/GeCSA64.dir/Gen_Phi.cpp.o CMakeFiles/GeCSA64.dir/InArray.cpp.o CMakeFiles/GeCSA64.dir/loadkit.cpp.o CMakeFiles/GeCSA64.dir/Phi.cpp.o CMakeFiles/GeCSA64.dir/savekit.cpp.o
-/usr/bin/ranlib libGeCSA64.a

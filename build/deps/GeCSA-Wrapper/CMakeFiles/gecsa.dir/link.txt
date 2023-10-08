@@ -1,2 +1,0 @@
-/usr/bin/ar qc libgecsa.a CMakeFiles/gecsa.dir/source/bitmap.cpp.o CMakeFiles/gecsa.dir/source/gecsa.cpp.o CMakeFiles/gecsa.dir/source/int_array.cpp.o CMakeFiles/gecsa.dir/source/sparse_bitmap.cpp.o
-/usr/bin/ranlib libgecsa.a

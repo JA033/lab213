@@ -15,6 +15,7 @@ add_library(wildcard STATIC
     "source/wildcard_executor.cpp"
     "source/wildcard_pattern.cpp"
     "source/searchable_bitmap.cpp"
+    "source/wildcard_searcher.cpp"
 )
 
 target_link_libraries(wildcard PUBLIC gecsa TBB::tbb)

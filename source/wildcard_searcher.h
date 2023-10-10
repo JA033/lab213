@@ -9,6 +9,8 @@
 #include "gecsa/gecsa.hpp"
 #include <fstream>
 #include <sstream>
+#include "gecsa/bitmap.hpp"
+#include "build_rank_struct.h"
 
 using namespace gecsa;
 
@@ -17,6 +19,7 @@ namespace wildcard {
     class WildcardSearcher {
     private:
         GeCSA *csa;
+        BuildRankStruct builder;
 
         //工具函数，输入一个字符串str，以及分隔符delimiter，根据分隔符将原
         //字符串分割并返回到一个vector容器中，当中的每一个子串仍为string类型
@@ -25,7 +28,10 @@ namespace wildcard {
         WildcardSearcher() = default;
         ~WildcardSearcher() = default;
 
-        WildcardSearcher(GeCSA &csa){this->csa = &csa;}
+        WildcardSearcher(GeCSA &csa,const std::string& path){
+            this->csa = &csa;
+            builder.buildSparseBitmap(path);
+        }
         // 输入模式串，最终会返回匹配模式串在原串中的起始位置到rst中
         bool star_search(std::string pattern,double& runtime);
 

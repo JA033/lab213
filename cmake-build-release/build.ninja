@@ -91,8 +91,8 @@ build CMakeFiles/wildcard.dir/source/wildcard_searcher.cpp.o: CXX_COMPILER__wild
   OBJECT_DIR = CMakeFiles/wildcard.dir
   OBJECT_FILE_DIR = CMakeFiles/wildcard.dir/source
 
-build CMakeFiles/wildcard.dir/source/BuildBitmap.cpp.o: CXX_COMPILER__wildcard_unscanned_Release /home/dxy/Documents/csa_wildcard/source/BuildBitmap.cpp || cmake_object_order_depends_target_wildcard
-  DEP_FILE = CMakeFiles/wildcard.dir/source/BuildBitmap.cpp.o.d
+build CMakeFiles/wildcard.dir/source/build_rank_struct.cpp.o: CXX_COMPILER__wildcard_unscanned_Release /home/dxy/Documents/csa_wildcard/source/build_rank_struct.cpp || cmake_object_order_depends_target_wildcard
+  DEP_FILE = CMakeFiles/wildcard.dir/source/build_rank_struct.cpp.o.d
   FLAGS = -O3 -DNDEBUG -std=gnu++20 -fdiagnostics-color=always -march=native
   INCLUDES = -I/home/dxy/Documents/csa_wildcard/deps/GeCSA-Wrapper/include
   OBJECT_DIR = CMakeFiles/wildcard.dir
@@ -106,7 +106,7 @@ build CMakeFiles/wildcard.dir/source/BuildBitmap.cpp.o: CXX_COMPILER__wildcard_u
 #############################################
 # Link the static library libwildcard.a
 
-build libwildcard.a: CXX_STATIC_LIBRARY_LINKER__wildcard_Release CMakeFiles/wildcard.dir/source/document_searcher.cpp.o CMakeFiles/wildcard.dir/source/utils.cpp.o CMakeFiles/wildcard.dir/source/wildcard_executor.cpp.o CMakeFiles/wildcard.dir/source/wildcard_pattern.cpp.o CMakeFiles/wildcard.dir/source/searchable_bitmap.cpp.o CMakeFiles/wildcard.dir/source/wildcard_searcher.cpp.o CMakeFiles/wildcard.dir/source/BuildBitmap.cpp.o || deps/GeCSA-Wrapper/libgecsa.a deps/GeCSA-Wrapper/source/GeCSA64/libGeCSA64.a deps/GeCSA-Wrapper/source/GeCSA64/libdivsufsort64.a /usr/lib/x86_64-linux-gnu/libtbb.so.12.5
+build libwildcard.a: CXX_STATIC_LIBRARY_LINKER__wildcard_Release CMakeFiles/wildcard.dir/source/document_searcher.cpp.o CMakeFiles/wildcard.dir/source/utils.cpp.o CMakeFiles/wildcard.dir/source/wildcard_executor.cpp.o CMakeFiles/wildcard.dir/source/wildcard_pattern.cpp.o CMakeFiles/wildcard.dir/source/searchable_bitmap.cpp.o CMakeFiles/wildcard.dir/source/wildcard_searcher.cpp.o CMakeFiles/wildcard.dir/source/build_rank_struct.cpp.o || deps/GeCSA-Wrapper/libgecsa.a deps/GeCSA-Wrapper/source/GeCSA64/libGeCSA64.a deps/GeCSA-Wrapper/source/GeCSA64/libdivsufsort64.a /usr/lib/x86_64-linux-gnu/libtbb.so.12.5
   LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
   OBJECT_DIR = CMakeFiles/wildcard.dir
   POST_BUILD = :

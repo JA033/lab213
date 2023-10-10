@@ -15,6 +15,7 @@
 #include "wildcard_pattern.hpp"
 #include "utils.hpp"
 #include "timer.hpp"
+#include "build_rank_struct.h"
 
 #include "wildcard_searcher.h"
 
@@ -40,9 +41,10 @@ i32 main(i32 argc, const char *argv[]) {
         csa.save(archive_filename);
     }
 
-    WildcardSearcher searcher(csa);
+    WildcardSearcher searcher(csa,path);
     //searcher.testForWildcard();
     searcher.testForSsearch();
+
 
     return 0;
 

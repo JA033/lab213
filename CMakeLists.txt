@@ -8,6 +8,8 @@ set(CMAKE_CXX_STANDARD 20)
 find_package(TBB REQUIRED)
 
 add_subdirectory(deps/GeCSA-Wrapper)
+add_subdirectory(deps/parallel-hashmap)
+
 
 add_library(wildcard STATIC
     "source/document_searcher.cpp"
@@ -19,7 +21,7 @@ add_library(wildcard STATIC
     "source/build_rank_struct.cpp"
 )
 
-target_link_libraries(wildcard PUBLIC gecsa TBB::tbb)
+target_link_libraries(wildcard PUBLIC gecsa TBB::tbb phmap)
 target_compile_options(wildcard PRIVATE -march=native)
 
 add_executable(csa_wildcard source/main.cpp)

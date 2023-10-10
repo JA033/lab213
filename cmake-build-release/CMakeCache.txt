@@ -257,6 +257,15 @@ GeCSA_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 GeCSA_SOURCE_DIR:STATIC=/home/dxy/Documents/csa_wildcard/deps/GeCSA-Wrapper/source/GeCSA64
 
+//Whether or not to build the examples
+PHMAP_BUILD_EXAMPLES:BOOL=OFF
+
+//Whether or not to build the tests
+PHMAP_BUILD_TESTS:BOOL=OFF
+
+//Enable installation
+PHMAP_INSTALL:BOOL=OFF
+
 //The directory containing a CMake configuration file for TBB.
 TBB_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/TBB
 
@@ -268,6 +277,15 @@ gecsa_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 gecsa_SOURCE_DIR:STATIC=/home/dxy/Documents/csa_wildcard/deps/GeCSA-Wrapper
+
+//Value Computed by CMake
+phmap_BINARY_DIR:STATIC=/home/dxy/Documents/csa_wildcard/cmake-build-release/deps/parallel-hashmap
+
+//Value Computed by CMake
+phmap_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+phmap_SOURCE_DIR:STATIC=/home/dxy/Documents/csa_wildcard/deps/parallel-hashmap
 
 
 ########################
@@ -370,7 +388,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

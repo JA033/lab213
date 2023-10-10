@@ -8,6 +8,7 @@
 #include<cstring>
 #include<execution>
 #include<unordered_map>
+#include"parallel_hashmap/phmap.h"
 
 namespace wildcard {
     bool WildcardSearcher::star_search(std::string pattern, double &runtime) {
@@ -23,13 +24,13 @@ namespace wildcard {
             auto start = std::chrono::high_resolution_clock::now(); //测时间开始
 
             std::vector<uindex> rst = csa->locate(substrings[0]); //所有匹配的串的起始下标
-            num=rst.size();
-            int j=0;
-            for(usize i=0;i<num;i++){
-                usize oneNum=builder.rank1(rst[i]); //当前串的行数
+
+            std::for_each(std::execution::par,rst.begin(), rst.end(), [&](uindex idx){
+                usize oneNum=builder.rank1(idx); //当前串的行数
                 usize nextIdx=builder.select1(oneNum); //下一个串的起始位置
-                std::vector<u8> str=csa->extract(rst[i], nextIdx-rst[i]);
-            }
+                std::vector<u8> str=csa->extract(idx, nextIdx-idx);
+            });
+
 
             auto end = std::chrono::high_resolution_clock::now(); //测时间结束
             std::chrono::duration<double> duration = end - start;
@@ -42,13 +43,12 @@ namespace wildcard {
             auto start = std::chrono::high_resolution_clock::now(); //测时间开始
 
             std::vector<uindex> rst = csa->locate(substrings[1]);
-            num=rst.size();
-            for(usize i=0;i<num;i++){
-                usize oneNum=builder.rank1(rst[i]); //当前串的行数
+            std::for_each(std::execution::par,rst.begin(), rst.end(), [&](uindex idx){
+                usize oneNum=builder.rank1(idx); //当前串的行数
                 usize startIdx=builder.select1(oneNum-1); //当前串的起始位置
 
-                std::vector<u8> str=csa->extract(startIdx+1, rst[i]-startIdx+substrings[1].length());
-            }
+                std::vector<u8> str=csa->extract(startIdx+1, idx-startIdx+substrings[1].length());
+            });
 
             auto end = std::chrono::high_resolution_clock::now(); //测时间结束
             std::chrono::duration<double> duration = end - start;
@@ -56,31 +56,29 @@ namespace wildcard {
             runtime = duration.count();
             return true;
         }
-            //TODO:原来的*写法
 
-            //否则的话*在串中间
+        //否则的话*在串中间
         else {
             auto start = std::chrono::high_resolution_clock::now(); //测时间开始
 
             std::vector<uindex> rst1 = csa->locate(substrings[0]);
             std::vector<uindex> rst2 = csa->locate(substrings[1]);
-            num1=rst1.size(); num2=rst2.size();
 
-            //对p2创建的每个locate值计算rank值，并记录到map中
-            std::unordered_map<usize,uindex> p2map;
-            for(uindex locateIdx:rst2){
-                usize rankNum=builder.rank1(locateIdx);
-                p2map.insert(std::make_pair(rankNum,locateIdx));
-            }
+            //std::unordered_map<usize,uindex> p2map;
+            phmap::parallel_flat_hash_map<usize, uindex> p2map;
+            std::for_each(rst2.begin(),rst2.end(),[&](uindex idx){
+                usize oneNum=builder.rank1(idx);
+                p2map.insert(std::make_pair(oneNum,idx));
+            });
 
-            for(uindex locateIdx:rst1){
-                usize rankNum=builder.rank1(locateIdx);
-                auto it=p2map.find(rankNum);
+            std::for_each(std::execution::par,rst1.begin(),rst1.end(),[&](uindex idx){
+                usize oneNum=builder.rank1(idx);
+                auto it=p2map.find(oneNum);
                 if(it!=p2map.end()){
                     usize p2Idx=it->second;
-                    std::vector<u8> str=csa->extract(locateIdx, p2Idx-locateIdx+substrings[1].length());
+                    std::vector<u8> str=csa->extract(idx, p2Idx-idx+substrings[1].length());
                 }
-            }
+            });
 
             auto end = std::chrono::high_resolution_clock::now(); //测时间结束
             std::chrono::duration<double> duration = end - start;
@@ -159,6 +157,7 @@ namespace wildcard {
         if(mod=='*'){
             double runtime;
             star_search(pattern,runtime);
+            std::cout<<runtime<<std::endl;
         }
         else{
             std::cout<<"模式输入错误"<<std::endl;

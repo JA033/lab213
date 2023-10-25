@@ -119,56 +119,45 @@ namespace wildcard {
                 p2map.insert(std::make_pair(oneNum,idx));
             });
 
-//            std::vector< std::pair<uindex,usize> > temp;
-//            for(auto idx: rst1){
+            //调用线程池执行intercept
+            std::vector<std::vector<uindex> > taskGroups;
+            std::vector<uindex> currentTaskGroup;
+            //把任务打包成1000个一组
+            for (auto idx : rst1) {
+                currentTaskGroup.push_back(idx);
+
+                if (currentTaskGroup.size() >= 1000) {
+                    taskGroups.push_back(currentTaskGroup);
+                    currentTaskGroup.clear();
+                }
+            }
+
+            // 处理剩余的不足1000个的任务
+            if (!currentTaskGroup.empty()) {
+                taskGroups.push_back(currentTaskGroup);
+            }
+
+            for (const auto& taskGroup : taskGroups) {
+                pool.enqueue([taskGroup,p2map,this,substrings]() {
+                    for (auto idx : taskGroup) {
+                        usize oneNum=builder.rank1(idx);
+                        auto it=p2map.find(oneNum);
+                        if(it!=p2map.end()){
+                            usize p2Idx=it->second;
+                            std::vector<u8> str=csa->extract(idx, p2Idx-idx+substrings[1].length());
+                        }
+                    }
+                });
+            }
+
+//            std::for_each(std::execution::par,rst1.begin(),rst1.end(),[&](uindex idx){
 //                usize oneNum=builder.rank1(idx);
 //                auto it=p2map.find(oneNum);
 //                if(it!=p2map.end()){
 //                    usize p2Idx=it->second;
-//                    temp.emplace_back(idx,p2Idx);
+//                    std::vector<u8> str=csa->extract(idx, p2Idx-idx+substrings[1].length());
 //                }
-//            }
-
-
-//            //调用线程池执行intercept
-//            std::vector<std::vector<uindex> > taskGroups;
-//            std::vector<uindex> currentTaskGroup;
-//            //把任务打包成1000个一组
-//            for (auto idx : rst1) {
-//                currentTaskGroup.push_back(idx);
-//
-//                if (currentTaskGroup.size() >= 1000) {
-//                    taskGroups.push_back(currentTaskGroup);
-//                    currentTaskGroup.clear();
-//                }
-//            }
-//
-//            // 处理剩余的不足1000个的任务
-//            if (!currentTaskGroup.empty()) {
-//                taskGroups.push_back(currentTaskGroup);
-//            }
-//
-//            for (const auto& taskGroup : taskGroups) {
-//                pool.enqueue([&,taskGroup]() {
-//                    for (auto idx : taskGroup) {
-//                        usize oneNum=builder.rank1(idx);
-//                        auto it=p2map.find(oneNum);
-//                        if(it!=p2map.end()){
-//                            usize p2Idx=it->second;
-//                            std::vector<u8> str=csa->extract(idx, p2Idx-idx+substrings[1].length());
-//                        }
-//                    }
-//                });
-//            }
-
-            std::for_each(std::execution::par,rst1.begin(),rst1.end(),[&](uindex idx){
-                usize oneNum=builder.rank1(idx);
-                auto it=p2map.find(oneNum);
-                if(it!=p2map.end()){
-                    usize p2Idx=it->second;
-                    std::vector<u8> str=csa->extract(idx, p2Idx-idx+substrings[1].length());
-                }
-            });
+//            });
 
 
             auto end = std::chrono::high_resolution_clock::now(); //测时间结束

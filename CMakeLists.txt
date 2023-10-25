@@ -19,6 +19,7 @@ add_library(wildcard STATIC
     "source/searchable_bitmap.cpp"
     "source/wildcard_searcher.cpp"
     "source/build_rank_struct.cpp"
+    "source/ThreadPool.h"
 )
 
 target_link_libraries(wildcard PUBLIC gecsa TBB::tbb phmap)

@@ -3,6 +3,7 @@
 #include "CSA.h"
 
 #include "undef_damn_macros.hpp"
+#include <execution>
 
 namespace gecsa {
 
@@ -178,8 +179,12 @@ std::pair<uindex, uindex> GeCSA::extend_suffix_range(uindex base_l, uindex base_
 void GeCSA::suffix_range_to_indices(std::pair<uindex, uindex> range, uindex *result_out, SortOrder order) const {
     assert(range.first != kNoIndex && range.second != kNoIndex);
     //impl->newEnumerative2(range.first, range.second - 1, reinterpret_cast<long long *>(result_out));
-    for (uindex i = range.first; i < range.second; ++i)
-        result_out[i - range.first] = sa(i);
+    std::for_each(std::execution::par, result_out, result_out + range.second - range.first, [&](uindex &o) {
+        uindex i = std::addressof(o) - result_out;
+        result_out[i] = sa(i + range.first);
+    });
+//    for (uindex i = range.first; i < range.second; ++i)
+//        result_out[i - range.first] = sa(i);
 
     if (order == SortOrder::kAsc) {
         std::sort(result_out, result_out + range.second - range.first);

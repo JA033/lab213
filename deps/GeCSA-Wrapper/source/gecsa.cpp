@@ -291,4 +291,9 @@ GeCSA GeCSA::load_from_file(FILE *file) {
     return std::move(csa);
 }
 
+    uindex GeCSA::getPhi(uindex saVal) const {
+        return impl_->getPhi(saVal);
+        return 0;
+    }
+
 }

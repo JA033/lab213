@@ -93,6 +93,8 @@ public:
     [[nodiscard]] static GeCSA load_from_file(const std::string &path);
     [[nodiscard]] static GeCSA load_from_file(FILE *file);
 
+    uindex getPhi(uindex saVal) const;
+
 private:
     std::unique_ptr<CSA> impl_;
 };

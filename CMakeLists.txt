@@ -20,6 +20,7 @@ add_library(wildcard STATIC
     "source/wildcard_searcher.cpp"
     "source/build_rank_struct.cpp"
     "source/ThreadPool.h"
+    "source/fuzzy_searcher.cpp"
 )
 
 target_link_libraries(wildcard PUBLIC gecsa TBB::tbb phmap)

@@ -18,6 +18,7 @@
 #include "build_rank_struct.h"
 
 #include "wildcard_searcher.h"
+#include "fuzzy_searcher.h"
 
 using namespace gecsa;
 using namespace wildcard;
@@ -41,11 +42,14 @@ i32 main(i32 argc, const char *argv[]) {
         csa.save(archive_filename);
     }
 
-    WildcardSearcher searcher(csa,path);
+    //WildcardSearcher searcher(csa,path);
     //searcher.testForWildcard();
-    searcher.testForSsearch();
+    //searcher.testForSsearch();
 
+    FuzzySearcher fuzzySearcher(csa);
+    fuzzySearcher.set_pattern("search");
+    //fuzzySearcher.fuzzySearch();
+    fuzzySearcher.testForFuzzySearch();
 
-    return 0;
 
 }

@@ -49,7 +49,15 @@ i32 main(i32 argc, const char *argv[]) {
     FuzzySearcher fuzzySearcher(csa);
     fuzzySearcher.set_pattern("search");
     //fuzzySearcher.fuzzySearch();
-    fuzzySearcher.testForFuzzySearch();
+    //fuzzySearcher.testForFuzzySearch();
+    uindex csaSize = csa.size();
+    std::pair<uindex,uindex> a = std::pair<uindex,uindex>(0,csaSize);
+    std::string p1 = "";
 
+    auto start = std::chrono::high_resolution_clock::now(); //测时间开始
+    fuzzySearcher.depthFuzzySearch(3,0,p1,a);
+    auto end = std::chrono::high_resolution_clock::now(); //测时间结束
+    std::chrono::duration<double> duration = end - start;
+    std::cout << "运行时间: " << duration.count() << " 秒" << std::endl;
 
 }

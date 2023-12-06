@@ -26,8 +26,19 @@ namespace wildcard {
     }
 
     std::pair<uindex, uindex> FuzzySearcher::mergeSA(std::pair<uindex, uindex> a, std::pair<uindex, uindex> b, const std::string& p1 ,const std::string& p2) {
+        if(a.first==NotMatch || b.first==NotMatch){
+            return std::pair<uindex, uindex>(NotMatch,NotMatch);
+        }
+
         int m1 = p1.length();
         int m2 = p2.length();
+
+        if(m1==0){
+            return b;
+        }
+        else if(m2==0){
+            return a;
+        }
 
         uindex L=NotMatch;
         uindex R=NotMatch;
@@ -408,5 +419,114 @@ namespace wildcard {
                 }
             }
         }
+    }
+
+    void FuzzySearcher::depthFuzzySearch(int k, int i, std::string p1,std::pair<uindex, uindex> a) {
+        int m = pattern.length();
+        std::string p2=pattern.substr(i);
+        std::pair<uindex, uindex> b =F[i];
+
+        //如果当前得到的新串已经能找到，则输出
+        auto rst = mergeSA(a,b,p1,p2);
+        if(rst.first!=NotMatch){
+            std::cout<<"pattern match at position "<<i<<" : "<<rst.first<<" "<<rst.second<<std::endl;
+        }
+
+        // k表示当前迭代中允许的最大错误个数，当k=0时迭代结束直接返回上一层
+        if(k==0){
+            return;
+        }
+
+        //假定i之前的串已经被处理好了，得到的结果为p1，p2为剩下的串
+        for(int j=i;j<m;j++){
+            p1=p1+pattern[j];
+
+            //删除
+            std::string p11 = p1.substr(0,p1.length()-1);
+            auto p11range = suffixRange(p11);
+            depthFuzzySearch(k-1,j+1,p11,p11range);
+
+
+            //替换
+            for(char c='a';c<='z';c++){
+                std::string p12 = p1.substr(0,p1.length()-1)+c;
+                auto p12range= suffixRange(p12);
+                depthFuzzySearch(k-1,j+1,p12,p12range);
+            }
+
+            //插入
+            for(char c='a';c<='b';c++){
+                std::string p13 = p1.substr(0,p1.length()-1)+c;
+                auto p13range= suffixRange(p13);
+                depthFuzzySearch(k-1,j,p13,p13range);
+            }
+        }
+        //插入
+        for(char c='a';c<='b';c++){
+            std::string p13 = p1+c;
+            auto p13range= suffixRange(p13);
+            depthFuzzySearch(k-1,m,p13,p13range);
+        }
+        return;
+    }
+
+    void FuzzySearcher::testForDepthFuzzySearch(int k, int i, std::string p1,std::pair<uindex, uindex> a) {
+        //std::cout<<"depthFuzzySearch: "<<k<<" "<<i<<" "<<p1<<" "<<a.first<<" "<<a.second<<std::endl;
+        int m = pattern.length();
+        std::string p2=pattern.substr(i);
+        std::pair<uindex, uindex> b =F[i];
+
+        //如果当前得到的新串已经能找到，则输出
+        auto rst = mergeSA(a,b,p1,p2);
+        if(rst.first!=NotMatch){
+            std::cout<<"pattern match at position "<<i<<" : "<<rst.first<<" "<<rst.second<<std::endl;
+            std::cout<<"suppose to be:"<<p1+p2<<" real result:";
+            testExtract(rst.first,p1.length()+p2.length());
+            if(rst.first==0){
+                std::cout<<"depthFuzzySearch: "<<k<<" "<<i<<" "<<p1<<" "<<a.first<<" "<<a.second<<std::endl;
+                std::cout<<"p1:"<<p1<<" p2:"<<p2<<" a:"<<a.first<<" "<<a.second<<" b:"<<b.first<<" "<<b.second<<std::endl;
+            }
+        }
+
+        // k表示当前迭代中允许的最大错误个数，当k=0时迭代结束直接返回上一层
+        if(k==0){
+            return;
+        }
+
+        //假定i之前的串已经被处理好了，得到的结果为p1，p2为剩下的串
+        for(int j=i;j<m;j++){
+            p1=p1+pattern[j];
+
+            //删除
+            std::string p11 = p1.substr(0,p1.length()-1);
+            auto p11range = suffixRange(p11);
+            //std::cout<<"deletion"<<std::endl;
+            depthFuzzySearch(k-1,j+1,p11,p11range);
+
+
+            //替换
+            for(char c='a';c<='z';c++){
+                std::string p12 = p1.substr(0,p1.length()-1)+c;
+                auto p12range= suffixRange(p12);
+                //std::cout<<"replacement"<<std::endl;
+                depthFuzzySearch(k-1,j+1,p12,p12range);
+            }
+
+            //插入
+            for(char c='a';c<='b';c++){
+                std::string p13 = p1.substr(0,p1.length()-1)+c;
+                auto p13range= suffixRange(p13);
+                //std::cout<<"insertion"<<std::endl;
+                depthFuzzySearch(k-1,j,p13,p13range);
+            }
+        }
+        //插入
+        for(char c='a';c<='b';c++){
+            std::string p13 = p1+c;
+            auto p13range= suffixRange(p13);
+            //std::cout<<"insertion"<<std::endl;
+            depthFuzzySearch(k-1,m,p13,p13range);
+        }
+        return;
     }
 } // wildcard

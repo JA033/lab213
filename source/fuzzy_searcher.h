@@ -68,11 +68,15 @@ namespace wildcard {
         //k是允许的错误数,默认为1,模式串直接在类里面取，需要修改模式串用
         void fuzzySearch(int k=1);
 
+        //递归深度搜索的模糊搜索
+        void depthFuzzySearch(int k,int i,std::string p1, std::pair<uindex, uindex> a);
+
         void testForFuzzySearch();
         void testForDeletion(int i);
         void testForReplacement(int i);
         void testForInsertion(int i);
         void testForMergeSA();
+        void testForDepthFuzzySearch(int k, int i, std::string p1,std::pair<uindex, uindex> a);
 
         //只提取一个sa值对应位置的串并输出
         void testExtract(uindex saNum,int len){

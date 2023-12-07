@@ -429,7 +429,7 @@ namespace wildcard {
         //如果当前得到的新串已经能找到，则输出
         auto rst = mergeSA(a,b,p1,p2);
         if(rst.first!=NotMatch){
-            std::cout<<"pattern match at position "<<i<<" : "<<rst.first<<" "<<rst.second<<std::endl;
+            //std::cout<<"pattern match at position "<<i<<" : "<<rst.first<<" "<<rst.second<<std::endl;
         }
 
         // k表示当前迭代中允许的最大错误个数，当k=0时迭代结束直接返回上一层
@@ -455,14 +455,14 @@ namespace wildcard {
             }
 
             //插入
-            for(char c='a';c<='b';c++){
+            for(char c='a';c<='z';c++){
                 std::string p13 = p1.substr(0,p1.length()-1)+c;
                 auto p13range= suffixRange(p13);
                 depthFuzzySearch(k-1,j,p13,p13range);
             }
         }
         //插入
-        for(char c='a';c<='b';c++){
+        for(char c='a';c<='z';c++){
             std::string p13 = p1+c;
             auto p13range= suffixRange(p13);
             depthFuzzySearch(k-1,m,p13,p13range);
@@ -525,6 +525,71 @@ namespace wildcard {
             std::string p13 = p1+c;
             auto p13range= suffixRange(p13);
             //std::cout<<"insertion"<<std::endl;
+            depthFuzzySearch(k-1,m,p13,p13range);
+        }
+        return;
+    }
+
+    void FuzzySearcher::timeTestForDepthFuzzySearch(int k,int loop,std::string p ,std::string mod) {
+        auto start = std::chrono::high_resolution_clock::now(); //测时间开始
+
+        for(int i=0;i<loop;i++){
+            set_pattern(p);
+            if(mod == "normal")
+                depthFuzzySearch(k,0,"",std::pair<uindex,uindex>(0,csa->size()));
+            else if(mod == "dna")
+                depthFuzzySearchDNA(k,0,"",std::pair<uindex,uindex>(0,csa->size()));
+        }
+
+        auto end = std::chrono::high_resolution_clock::now(); //测时间结束
+        std::chrono::duration<double> duration = end - start;
+        std::cout<<"总运行次数："<<loop<<" k:"<<k<<" 查询字符串长度："<<pattern.length()<<" 总运行时间："<<duration.count()<<" 秒"<<" 平均单次运行时间："<<duration.count()/loop<<" 秒"<<std::endl;
+    }
+
+    void FuzzySearcher::depthFuzzySearchDNA(int k, int i, std::string p1, std::pair<uindex, uindex> a) {
+        int m = pattern.length();
+        std::string p2=pattern.substr(i);
+        std::pair<uindex, uindex> b =F[i];
+
+        //如果当前得到的新串已经能找到，则输出
+        auto rst = mergeSA(a,b,p1,p2);
+        if(rst.first!=NotMatch){
+            //std::cout<<"pattern match at position "<<i<<" : "<<rst.first<<" "<<rst.second<<std::endl;
+        }
+
+        // k表示当前迭代中允许的最大错误个数，当k=0时迭代结束直接返回上一层
+        if(k==0){
+            return;
+        }
+
+        //假定i之前的串已经被处理好了，得到的结果为p1，p2为剩下的串
+        for(int j=i;j<m;j++){
+            p1=p1+pattern[j];
+
+            //删除
+            std::string p11 = p1.substr(0,p1.length()-1);
+            auto p11range = suffixRange(p11);
+            depthFuzzySearch(k-1,j+1,p11,p11range);
+
+
+            //替换
+            for(char c:{A,G,C,T}){
+                std::string p12 = p1.substr(0,p1.length()-1)+c;
+                auto p12range= suffixRange(p12);
+                depthFuzzySearch(k-1,j+1,p12,p12range);
+            }
+
+            //插入
+            for(char c:{A,G,C,T}){
+                std::string p13 = p1.substr(0,p1.length()-1)+c;
+                auto p13range= suffixRange(p13);
+                depthFuzzySearch(k-1,j,p13,p13range);
+            }
+        }
+        //插入
+        for(char c:{A,G,C,T}){
+            std::string p13 = p1+c;
+            auto p13range= suffixRange(p13);
             depthFuzzySearch(k-1,m,p13,p13range);
         }
         return;

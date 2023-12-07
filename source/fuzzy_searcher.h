@@ -10,6 +10,7 @@
 #include "gecsa/gecsa.hpp"
 #include <string>
 #include<iostream>
+#include<chrono>
 
 using namespace gecsa;
 
@@ -21,6 +22,7 @@ namespace wildcard {
         GeCSA *csa;
         std::string pattern;
         const int NotMatch = -1;
+        enum DNA{A='A',C='C',G='G',T='T'};
 
         //二分法找到满足跳k次后仍在第二个区间内的最小的L和最大的R
         uindex findSmallestL(std::pair<uindex, uindex> a, std::pair<uindex, uindex> b ,int k);
@@ -37,10 +39,8 @@ namespace wildcard {
 
         //位置i删除
         void deletion(int i);
-
         //位置i替换
         void replacement(int i);
-
         //位置i插入
         void insertion(int i);
 
@@ -70,6 +70,7 @@ namespace wildcard {
 
         //递归深度搜索的模糊搜索
         void depthFuzzySearch(int k,int i,std::string p1, std::pair<uindex, uindex> a);
+        void depthFuzzySearchDNA(int k,int i,std::string p1, std::pair<uindex, uindex> a);
 
         void testForFuzzySearch();
         void testForDeletion(int i);
@@ -77,6 +78,7 @@ namespace wildcard {
         void testForInsertion(int i);
         void testForMergeSA();
         void testForDepthFuzzySearch(int k, int i, std::string p1,std::pair<uindex, uindex> a);
+        void timeTestForDepthFuzzySearch(int k,int loop,std::string p,std::string mod);
 
         //只提取一个sa值对应位置的串并输出
         void testExtract(uindex saNum,int len){
@@ -87,7 +89,6 @@ namespace wildcard {
             }
             std::cout<<std::endl;
         }
-
     };
 
 } // wildcard

@@ -42,22 +42,19 @@ i32 main(i32 argc, const char *argv[]) {
         csa.save(archive_filename);
     }
 
-    //WildcardSearcher searcher(csa,path);
-    //searcher.testForWildcard();
-    //searcher.testForSsearch();
 
     FuzzySearcher fuzzySearcher(csa);
-    fuzzySearcher.set_pattern("search");
-    //fuzzySearcher.fuzzySearch();
-    //fuzzySearcher.testForFuzzySearch();
-    uindex csaSize = csa.size();
-    std::pair<uindex,uindex> a = std::pair<uindex,uindex>(0,csaSize);
-    std::string p1 = "";
 
-    auto start = std::chrono::high_resolution_clock::now(); //测时间开始
-    fuzzySearcher.depthFuzzySearch(3,0,p1,a);
-    auto end = std::chrono::high_resolution_clock::now(); //测时间结束
-    std::chrono::duration<double> duration = end - start;
-    std::cout << "运行时间: " << duration.count() << " 秒" << std::endl;
+//    std::vector<std::string> patterns={"amdxe","search","Recycle","Software","Installer","Management","unsupported","localization"};
+//
+//    for(std::string p:patterns){
+//        fuzzySearcher.timeTestForDepthFuzzySearch(3,1,p,"normal");
+//    }
+
+    std::vector<std::string> DNAPatterns={"CCTCA","TAAGCC","TCGCTTC","ACCAATAG","AGCGGTACC","CCTGGTCTTT","ATGTGATTTAT","GTGCTGGGATTA"};
+
+    for(std::string p:DNAPatterns){
+        fuzzySearcher.timeTestForDepthFuzzySearch(4,2,p,"dna");
+    }
 
 }
